@@ -62,3 +62,16 @@ export const UpdateListing=async(req,res,next)=>{
       next(error);
    }
 }
+export const getRandomListings = async (req, res, next) => {
+   try {
+       const totalListings = await List.countDocuments(); 
+
+       const listings = await List.aggregate([
+           { $sample: { size: Math.min(12, totalListings) } } 
+       ]);
+
+       return res.status(200).json(listings);
+   } catch (error) {
+       next(error);
+   }
+}

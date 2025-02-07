@@ -1,19 +1,84 @@
-import React,{useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useSelector} from 'react-redux'
-const Browse = () => {
-  const navigate=useNavigate();
-  const user=useSelector((store)=>store.appSlice.user);
-  useEffect(()=>{
-     if(!user){
-      navigate('/');
-     }
-  },[])
-  return (
-    <div className='min-h-[100vh]'>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum sint, voluptas, minima quidem cumque modi quis necessitatibus commodi voluptates voluptatum ducimus asperiores est qui pariatur enim obcaecati. Consequuntur atque necessitatibus dolor soluta debitis, laboriosam suscipit consequatur! Unde numquam, mollitia perferendis voluptas perspiciatis facilis, iste possimus nobis nulla vero odio odit, laudantium pariatur culpa. Ad, tenetur. Corrupti, labore? Magni sint rem, ipsa modi quae odio accusantium consequatur expedita aperiam aliquid! Eveniet inventore perferendis, atque dignissimos recusandae dicta vero, voluptates maxime fugit cumque perspiciatis! Alias laudantium cumque temporibus laborum. Non voluptate, harum incidunt qui facilis, voluptatum dolores, aperiam officiis assumenda inventore illum nemo ipsum dolor rem nisi. Ipsum nesciunt magnam, odio consequatur quo iusto consequuntur minus cupiditate fugiat enim! Nostrum fugit dolorem officia voluptates asperiores porro explicabo accusamus necessitatibus, hic tempore. Natus molestias sint impedit optio tempora quae consectetur, provident ea vero! Sit repellat aperiam hic nostrum in, optio quos ipsam eaque. Corrupti nihil asperiores ullam unde debitis. Consectetur, architecto modi voluptatum magnam at error eius tempore est unde, libero aperiam odio nobis? Magni dolores vitae eaque cumque nulla delectus maxime est ut tempore voluptate. Explicabo libero unde dolor officiis porro, vero neque sint provident qui, labore autem nihil aliquid quisquam sed corporis ratione sequi obcaecati voluptas nesciunt molestiae. Corrupti aut iusto facilis doloribus laboriosam consequatur dolor tempore unde, eos ratione impedit fugiat deserunt nihil, repellendus doloremque velit excepturi optio beatae ex nulla, repudiandae quo soluta aperiam! Officia, excepturi? Odit nemo in rem blanditiis deleniti a doloremque obcaecati nihil nobis molestiae, corporis mollitia placeat commodi autem vitae officiis earum unde vero accusantium? Optio natus harum iure? Eligendi suscipit delectus deserunt! Praesentium sed at nihil dolorum corrupti soluta ex, quae harum quaerat neque repellendus asperiores nulla? Dolores recusandae voluptatem enim nisi ullam cumque minima harum laudantium nihil, maiores perspiciatis, sapiente odit, quidem voluptates accusamus blanditiis modi. Aliquid possimus repellat voluptatem nisi. Quas distinctio atque beatae, quae cumque tempora harum neque aspernatur, ullam eius dolor? Architecto, vel ipsa. Explicabo dolorem temporibus est provident placeat culpa dolorum sunt rem magnam cum? Aut aliquid velit sapiente minus impedit facere vitae reiciendis molestias placeat, fuga atque eaque. Porro soluta est a, obcaecati vel, hic ex deserunt quisquam aperiam sequi quasi perferendis quas cum alias quam. Tempore hic consequuntur expedita tempora ex eius. Aliquid accusamus cupiditate architecto commodi labore recusandae magni expedita quasi dolorem, voluptatum distinctio perspiciatis? Quis sed minima porro. Facere aperiam magnam, exercitationem voluptatum adipisci minus assumenda. Velit ipsam soluta iusto numquam repellendus laboriosam at illum aliquid tenetur eveniet modi odio minus natus explicabo libero voluptas cum incidunt, dolorem quisquam dicta. Beatae expedita laborum aperiam. Nesciunt commodi velit deserunt eos natus pariatur repellendus doloribus dignissimos necessitatibus optio cupiditate et deleniti, ducimus aliquam placeat fugiat! Fugiat nobis harum velit sit dolorum optio assumenda ea debitis odio, perspiciatis soluta praesentium, ratione aliquam dignissimos facere. Debitis odit repellat et praesentium ipsa quisquam odio sint ullam exercitationem fugiat ab aut veritatis eaque necessitatibus nesciunt recusandae qui explicabo quidem in voluptatem, dolores eligendi non ut quas. Ad odio ab consectetur inventore?
-    </div>
-  )
-}
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { END_POINT2 } from "../utils/constant";
 
-export default Browse
+const Browse = () => {
+  const [listings, setListings] = useState([]);
+  const navigate = useNavigate();
+  const user = useSelector((store) => store.appSlice.user);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const res = await fetch(`${END_POINT2}/random`, { credentials: "include" });
+        const data = await res.json();
+        setListings(data);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
+    };
+    fetchListings();
+  }, []);
+
+  return (
+    <div className="min-h-screen p-6 dark:bg-gray-900 bg-white">
+      
+      <h1 className="text-4xl font-bold text-center text-gray-500">
+        Your Ultimate Marketplace for Homes 🏡  
+      </h1>
+      <p className="text-lg text-center text-gray-600 mt-2">
+        Find your dream home today!  
+      </p>
+
+      
+      <div className="flex justify-center items-center mt-6 mb-6">
+        <input
+          type="text"
+          placeholder="Search here..."
+          className="p-3 w-[300px] border border-gray-300  outline-none bg-gray-500"
+        />
+        <button className="ml-2 bg-green-900 text-white p-3 px-6 rounded-md hover:bg-green-800 transition">
+          Search
+        </button>
+      </div>
+
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+        {listings.length > 0 ? (
+          listings.map(
+            (listing, index) =>
+              listing.imageUrls && listing.imageUrls.length > 0 && (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
+                >
+                  <img
+                    src={listing.imageUrls[0].startsWith("http") ? listing.imageUrls[0] : `${END_POINT2}${listing.imageUrls[0]}`}
+                    alt={`Listing ${index + 1}`}
+                    className="w-full h-56 object-cover"
+                  />
+                  <div className="p-3">
+                    <h3 className="text-lg font-semibold text-gray-900">Beautiful Home</h3>
+                    <p className="text-sm text-gray-600">Great location with amazing amenities.</p>
+                  </div>
+                </div>
+              )
+          )
+        ) : (
+          <p className="text-center text-gray-700 text-lg col-span-full">
+            Loading or No Listings Available...
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Browse;
