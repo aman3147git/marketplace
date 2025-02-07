@@ -38,7 +38,7 @@ const Oauth = () => {
         }
     }
   return (
-    <button type='button' onClick={googlehandler} className='bg-gradient-to-r from-yellow-500 to-green-600 text-white p-3 rounded-lg mt-3 ml-16 hover:opacity-95 uppercase'>Continue with google</button>
+    <button type='button' onClick={googlehandler} className='bg-gradient-to-r from-yellow-500 to-pink-600 text-white p-3 rounded-lg w-full  hover:opacity-95 uppercase'>Continue with Google</button>
   )
 }
 

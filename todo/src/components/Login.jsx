@@ -74,31 +74,89 @@ const Login = () => {
         
     }
   return (
-    <div className='flex flex-row items-center justify-center  min-h-screen'>
-        <div className='max-w-3xl mx-auto  bg-slate-700 rounded-md'>
+    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+    <div className="w-full max-w-md p-6 bg-slate-800 rounded-lg shadow-md">
         <form onSubmit={submitHandler}>
-            <h1 className='font-bold text-3xl text-center text-white'>{islogin?"Sign In":"Sign Up"}</h1>
-            <div className='flex flex-col text-center gap-3 mt-6 mb-4 p-4'>
-            {!islogin && <input className='py-3 dark:text-blue-700' value={fullName} onChange={(e)=>setFullName(e.target.value)} type='text' placeholder='Write name'/>}
-            <input className='py-3 dark:text-blue-700'  value={email} onChange={(e)=>setEmail(e.target.value)} type='email' placeholder='Email'/>
-            <input className='py-3 dark:text-blue-700'  value={password} onChange={(e)=>setPassword(e.target.value)} type={passtype} placeholder='********'/>
-            
-           
-            <span  onClick={()=>setPasstype(passtype==="password"?"text":"password")}>{passtype==="password"?<FaLockOpen/>:<FaLock/>}</span>
+            <h1 className="text-3xl font-bold text-center text-white mb-6">
+                {islogin ? "Sign In" : "Sign Up"}
+            </h1>
+
+            <div className="flex flex-col gap-4">
+                
+                {!islogin && (
+                    <input 
+                        className="p-2 bg-gray-700 text-white outline-none" 
+                        value={fullName} 
+                        onChange={(e) => setFullName(e.target.value)} 
+                        type="text" 
+                        placeholder="Full Name"
+                    />
+                )}
+
+                
+                <input 
+                    className="p-2 bg-gray-700 text-white outline-none" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    type="email" 
+                    placeholder="Email"
+                />
+
+                
+                <div className="relative">
+                    <input 
+                        className="p-2 pr-10 bg-gray-700 text-white w-full outline-none"  
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        type={passtype} 
+                        placeholder="Password"
+                    />
+                    <span 
+                        className="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer"
+                        onClick={() => setPasstype(passtype === "password" ? "text" : "password")}
+                    >
+                        {passtype === "password" ? <FaLockOpen /> : <FaLock />}
+                    </span>
+                </div>
             </div>
+
             
-            <div className='ml-[70px] sm:mr-[60px]'>
-            {
-                loader?<button className='bg-blue-800  p-3 rounded-lg text-white ml-[140px]'>Loading..</button>:<button className='bg-blue-800  p-3 rounded-lg text-white ml-[140px]'>{islogin?"Login":"SignUp"}</button>
-            }
-            
-            <Oauth/>
+            <div className="mt-6">
+                {loader ? (
+                    <button 
+                        className="w-full p-3 bg-red-600 text-white rounded-md cursor-not-allowed opacity-70"
+                        disabled
+                    >
+                        Loading...
+                    </button>
+                ) : (
+                    <button 
+                        className="w-full p-3 bg-purple-700 text-white rounded-md hover:bg-purple-600 transition font-semibold"
+                    >
+                        {islogin ? "Login" : "Sign Up"}
+                    </button>
+                )}
             </div>
+
             
-            <p className='mt-6 ml-2 text-zinc-300'>{islogin?"New user?":"Already have an account?"} <span onClick={loginhandler} className='text-red-600 ml-3 hover:underline'>{islogin?"signup":"login"}</span></p>
+            <div className="mt-4">
+                <Oauth />
+            </div>
+
+            
+            <p className="mt-6 text-center text-gray-300">
+                {islogin ? "New user?" : "Already have an account?"} 
+                <span 
+                    onClick={loginhandler} 
+                    className="text-red-500 cursor-pointer ml-2 hover:underline"
+                >
+                    {islogin ? "Sign Up" : "Login"}
+                </span>
+            </p>
         </form> 
-        </div>
     </div>
+</div>
+
   )
 }
 
