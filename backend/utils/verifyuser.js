@@ -21,7 +21,7 @@ export const verifytoken=(req,res,next)=>{
             })
             
         }
-        console.log("User verified:", user);
+        
         req.user=user;
         next();
     });

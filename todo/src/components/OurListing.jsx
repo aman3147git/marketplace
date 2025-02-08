@@ -54,10 +54,10 @@ const OurListing = () => {
             </p>
 
             <div className="flex justify-between items-center">
-              <p className="text-lg font-semibold dark:text-yellow-500">{listing.name}</p>
-              <div className="px-4 py-2 bg-purple-700 text-white rounded-lg font-bold">
+              <p className="text-lg font-semibold dark:text-black">{listing.name}</p>
+              <button className="p-1 bg-red-700 text-white font-bold">
                 {listing.type === "rent" ? "For Rent" : "For Sale"}
-              </div>
+              </button>
             </div>
 
             

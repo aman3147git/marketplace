@@ -104,7 +104,7 @@ const Profile = () => {
   return (
     <div className='max-w-lg mx-auto min-h-screen'>
       <div  className='flex justify-between'>
-      <h1 className='text-3xl font-bold ml-[200px]'>Profile</h1>
+      <h1 className='text-3xl font-bold ml-[200px]'>My Profile</h1>
       <Logout />
       </div>
       <input onChange={(e)=>setFile(e.target.files[0])} type='file' ref={refer} hidden accept='image/*'/>
@@ -124,21 +124,46 @@ const Profile = () => {
       <input type='text' defaultValue={user.fullName} className='dark:text-blue-700'/>
       <input type='email' defaultValue={user.email} className='dark:text-blue-700'/>
       </form>
-      <div className='flex flex-col text-red-900 '>
-       
-        <h1 className='text-red-700 ' onClick={()=>setShow(true)}>Delete Account?</h1>
-        {
-          show&&
-          <div className='bg-gray-400 w-[300px] self-center rounded-lg'>
-            <h1 className='text-2xl text-black text-center'>
-              Want to delete account?</h1>
-           <div className='flex mt-12 ml-16 gap-4'>
-           <button onClick={handleDelete} className='h-10 w-14 bg-red-900   text-center rounded-lg text-white'>Delete</button>
-           <button className='h-10 w-14 bg-green-900 text-center rounded-lg text-white' onClick={()=>setShow(false)}>Cancel</button>
-           </div> 
+
+
+      <div className="flex flex-col items-center">
+      
+      <h1
+        className="text-red-700 cursor-pointer text-lg font-semibold hover:underline"
+        onClick={() => setShow(true)}
+      >
+        Delete Account?
+      </h1>
+
+      
+      {show && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-gray-200 w-[320px] p-6 rounded-lg shadow-lg">
+            <h1 className="text-2xl text-black text-center font-semibold">
+              Are you sure?
+            </h1>
+
+           
+            <div className="flex justify-center mt-6 gap-6">
+              <button
+                onClick={handleDelete}
+                className="h-10 w-20 bg-red-900 text-white font-semibold rounded-lg hover:bg-red-800 transition duration-200"
+              >
+                Delete
+              </button>
+              <button
+                className="h-10 w-20 bg-green-900 text-white font-semibold rounded-lg hover:bg-green-800 transition duration-200"
+                onClick={() => setShow(false)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
-        }
-      </div>
+        </div>
+      )}
+    </div>
+
+
       <Link to="/listing">
       <button className='bg-gradient-to-r from-purple-700 to-red-700 p-3 rounded-lg w-full mt-3'>Create Your's</button>
       

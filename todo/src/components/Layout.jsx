@@ -12,7 +12,7 @@ const Layout = () => {
         <div className='flex gap-3'>
         <h1 className='text-3xl font-bold text-blue-400 '>Market<span className='text-purple-700'>Place</span></h1>
         
-        <button onClick={()=>dispatch(toggleTheme())} className='text-3xl text-red-700' >{
+        <button onClick={()=>dispatch(toggleTheme())} className='text-3xl text-yellow-400' >{
           theme=='light'?<FaMoon/>:<FaSun/>
         }
         </button>
