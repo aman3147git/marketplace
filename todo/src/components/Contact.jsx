@@ -15,9 +15,9 @@ const Contact = ({listing}) => {
   return (
     <div className='max-w-lg mx-auto'>
         {contact&&(
-          <div className='my-7 flex flex-col gap-3'>
-        <p>Contact:{contact.fullName}</p>
-        <textarea name="message" id="message" rows="2" value={message} onChange={(e)=>setMessage(e.target.value)} placeholder='Write something here..' className='w-full p-3 border rounded-lg text-blue-500'></textarea>
+          <div className='my-7 flex flex-col gap-3 '>
+        <p>Contact: {contact.fullName}</p>
+        <textarea name="message" id="message" rows="2" value={message} onChange={(e)=>setMessage(e.target.value)} placeholder='Write something here..' className='w-full p-3 text-black outline-none bg-gray-500'></textarea>
         <Link to={`mailto:${contact.email}?subject=Regarding${listing.name}&body=${message}`} className='bg-slate-700 p-3 w-full text-center rounded-lg'>Send message</Link>
         </div>
         )}

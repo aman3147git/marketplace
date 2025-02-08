@@ -21,10 +21,9 @@ const Layout = () => {
         </div>
         <Link to="/profile">
         {
-            user?
-            <img className='rounded-full w-14 h-14 '  src={user.avatar} alt='userphoto' />:
-            <li className='underline text-black
-            '>SignIn</li>
+            user &&
+            <img className='rounded-full w-14 h-14 '  src={user.avatar} alt='userphoto' />
+            
         }
         </Link>
     </div>

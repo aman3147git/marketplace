@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { END_POINT2 } from "../utils/constant";
 
@@ -64,10 +64,12 @@ const Browse = () => {
                     alt={`Listing ${index + 1}`}
                     className="w-full h-56 object-cover"
                   />
-                  <div className="p-3">
-                    <h3 className="text-lg font-semibold text-gray-900">Beautiful Home</h3>
-                    <p className="text-sm text-gray-600">Great location with amazing amenities.</p>
+                  <Link to={`/listing/${listing._id}`}>
+                  <div className="p-3 ">
+                    <h3 className="text-lg font-semibold text-gray-900 hover:underline">{listing.name}</h3>
+                    <p className="text-sm text-gray-500">INR {listing.regularPrice}</p>
                   </div>
+                  </Link>
                 </div>
               )
           )
