@@ -115,7 +115,7 @@ const Login = () => {
                         className="absolute inset-y-0 right-3 flex items-center text-gray-400 cursor-pointer"
                         onClick={() => setPasstype(passtype === "password" ? "text" : "password")}
                     >
-                        {passtype === "password" ? <FaLockOpen /> : <FaLock />}
+                        {passtype === "password" ? <FaLock /> : <FaLockOpen />}
                     </span>
                 </div>
             </div>
