@@ -9,6 +9,7 @@ import Private from "./components/Private";
 import Listing from "./components/Listing";
 import UpdateListing from "./components/Updatelisting";
 import OurListing from "./components/OurListing";
+import Search from "./components/Search";
 
 
 
@@ -26,6 +27,8 @@ const App = () => {
         <Route path="/profile" element={<Profile/>} ></Route>
         <Route path="/listing" element={<Listing/>}/>
         <Route path="/update-listing/:lid" element={<UpdateListing/>}/>
+        <Route path="/search" element={<Search/>} />
+        <Route path="/search/:query" element={<Search/>} />
         </Route>
       </Routes>
     </BrowserRouter>
