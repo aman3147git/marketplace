@@ -4,7 +4,7 @@ import { END_POINT2 } from "../utils/constant";
 
 const Search = ({ results }) => {
   return (
-    <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+    <div className="bg-gray-300 p-4 rounded-lg shadow-md">
       {results.length > 0 ? (
         results.map((item) => (
           <Link

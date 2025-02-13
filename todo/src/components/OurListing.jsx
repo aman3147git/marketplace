@@ -49,12 +49,27 @@ const OurListing = () => {
 
           
           <div className="p-6">
+          <p className="text-lg font-semibold dark:text-black">{listing.name}</p>
             <p className="text-center text-3xl font-bold text-slate-700 mb-4">
               Price: INR {listing.regularPrice}
+              
+            </p>
+            <p className="text-center text-3xl font-bold text-slate-700 mb-4">
+              
+              Discounted Price: INR {listing.discountPrice}
             </p>
 
             <div className="flex justify-between items-center">
-              <p className="text-lg font-semibold dark:text-black">{listing.name}</p>
+              <div className="flex flex-col">
+              <h1 className="text-black text-2xl font-bold">Bathrooms: {listing.bathrooms}</h1>
+              <h1 className="text-black text-2xl font-bold">Bedrooms: {listing.bedrooms}</h1>
+              {
+                listing.furnished && <h1 className="text-black text-sm font-bold">furnished</h1>
+              }
+              {
+                listing.parking && <h1 className="text-black text-sm font-bold">parking available</h1>
+              }
+              </div>
               <button className="p-1 bg-red-700 text-white font-bold">
                 {listing.type === "rent" ? "For Rent" : "For Sale"}
               </button>
