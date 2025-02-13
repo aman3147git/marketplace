@@ -1,7 +1,6 @@
-import React,{useEffect, useRef, useState} from 'react'
+import React,{useState} from 'react'
 import { useSelector } from 'react-redux'
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {app} from "../firebase";
+
 import Logout from './Logout';
 import { END_POINT, END_POINT2 } from '../utils/constant';
 import { useDispatch } from 'react-redux';
@@ -10,45 +9,14 @@ import {Link, useNavigate} from "react-router-dom"
 const Profile = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
-  const [file,setFile]=useState(undefined);
-  const [perc,setPerc]=useState(0);
-  const [uploaderror,setUploaderror]=useState(false);
-  const [formdata,setFormdata]=useState({});
+  
   const {user}=useSelector(store=>store.appSlice);
   const [show,setShow]=useState(false);
-  const refer=useRef(null);
+  
   const [listingerror,setListingerror]=useState(false)
   const [userListing,setUserListing]=useState([])
   
-  useEffect(()=>{
-    if(file){
-      uploadFile(file);
-    }
-  },[file]);
-  const uploadFile=(file)=>{
-    const storage = getStorage(app);
-    const filename=new Date().getTime()+file.name;
-    const storageRef = ref(storage, filename);
-
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on('state_changed', 
-      (snapshot) => {
-        
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setPerc(Math.round(progress));
-        
-      }, 
-      (error) => {
-        setUploaderror(true);
-      }, 
-      () => {
-        
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setFormdata({...formdata,avatar:downloadURL});
-        });
-      }
-    );
-  }
+  
   
   const handleDelete=async()=>{
     try {
@@ -107,23 +75,15 @@ const Profile = () => {
       <h1 className='text-3xl font-bold ml-[200px]'>My Profile</h1>
       <Logout />
       </div>
-      <input onChange={(e)=>setFile(e.target.files[0])} type='file' ref={refer} hidden accept='image/*'/>
-      <img onClick={()=>refer.current.click()} className='rounded-full w-16 h-16 ml-[200px] ' src={formdata.avatar||user.avatar} alt='userphoto'/>
       
-      <p className='self-center'>{
-        uploaderror?
-        <span className='text-red-700'>uploading file error</span>:
-        perc>0 && perc<100?
-        <span>{`uploading ${perc}%`}</span>:
-        perc===100?
-        <span className='text-green-700'>Image uploaded successfully</span>:""
-        
-      }</p>
-      <form className='bg-slate-700 flex flex-col gap-3  p-7 m-7  rounded-lg'>
+      <img className='rounded-full w-16 h-16 ml-[200px] ' src={user.avatar} alt='userphoto'/>
+      
+      
+      <div className='bg-slate-800 flex flex-col gap-3  p-7 m-7  rounded-lg'>
       
       <input type='text' defaultValue={user.fullName} className='dark:text-blue-700'/>
       <input type='email' defaultValue={user.email} className='dark:text-blue-700'/>
-      </form>
+      </div>
 
 
       <div className="flex flex-col items-center">
