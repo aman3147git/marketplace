@@ -8,6 +8,7 @@ export const searched = async (req, res) => {
       $or: [
         { name: { $regex: query, $options: "i" } },
         { type: { $regex: query, $options: "i" } },
+        
       ],
     }).limit(10);
 

@@ -21,9 +21,9 @@ const Layout = () => {
         </div>
         <Link to="/profile">
         {
-            user ?
-            <img className='rounded-full w-14 h-14 '  src={user.avatar} alt='userphoto' /> :
-            <Link className='font-semibold text-red-400 underline text-xl' to="/auth">Register</Link>
+            user &&
+            <img className='rounded-full w-14 h-14 '  src={user.avatar} alt='userphoto' /> 
+            
         }
         </Link>
     </div>

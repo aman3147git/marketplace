@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { END_POINT2 } from "../utils/constant";
-import Search from "./Search"; // Import the Search component
+import Search from "./Search"; 
 
 const Browse = () => {
   const [listings, setListings] = useState([]);
-  const [searchResults, setSearchResults] = useState([]); // Store search results
+  const [searchResults, setSearchResults] = useState([]); 
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const user = useSelector((store) => store.appSlice.user);
 
   useEffect(() => {
     if (!user) {
-      navigate("/");
+      navigate("/auth");
     }
   }, [user, navigate]);
 
@@ -54,7 +54,7 @@ const Browse = () => {
       </h1>
       <p className="text-lg text-center text-gray-600 mt-2">Find your dream home today!</p>
 
-      {/* Search Bar */}
+      
       <div className="flex justify-center items-center mt-6 mb-6">
         <input
           type="text"
@@ -65,10 +65,10 @@ const Browse = () => {
         />
       </div>
 
-      {/* Search Results */}
+      
       {searchQuery && <Search results={searchResults} />}
 
-      {/* Listings */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
         {listings.length > 0 ? (
           listings.map(
