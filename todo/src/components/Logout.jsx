@@ -17,7 +17,7 @@ const Logout = () => {
         toast.success(res.data.message);
       }
       dispatch(setUser(null));
-      navigate('/');
+      navigate('/auth');
     }catch(error){
       toast.error(error.response.data.message);
       console.log(error);

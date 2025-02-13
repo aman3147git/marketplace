@@ -31,7 +31,7 @@ const Oauth = () => {
             console.log(data);
             
             dispatch(setUser(data));
-            navigate("/browse");
+            navigate("/");
         } catch (error) {
             
             console.log(error);

@@ -19,8 +19,8 @@ const App = () => {
     <BrowserRouter>
       <Layout/>
       <Routes>
-        <Route path="/" element={<Login/>} ></Route>
-        <Route path="/browse" element={<Browse />} ></Route>
+        <Route path="/auth" element={<Login/>} ></Route>
+        <Route path="/" element={<Browse />} ></Route>
         <Route path="/listing/:listingid" element={<OurListing/>} ></Route>
 
         <Route element={<Private/>}>

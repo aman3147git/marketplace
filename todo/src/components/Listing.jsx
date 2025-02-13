@@ -156,12 +156,12 @@ const Listing = () => {
             <span>Baths</span>
           </div>
           <div className="flex gap-2">
-            <input type='number' id='regularPrice' min='50' max='1000000' className='p-3 border border-gray-600 rounded-lg dark:text-black' onChange={handlechange} value={formdata.regularPrice}  required/>
+            <input type='number' id='regularPrice' min='50' max='100000000' className='p-3 border border-gray-600 rounded-lg dark:text-black' onChange={handlechange} value={formdata.regularPrice}  required/>
             <span>Regular Price</span>
           </div>
           {formdata.offer&&(
              <div className="flex gap-2">
-             <input type='number' id='discountPrice' min='50' max='1000000' className='p-3 border border-gray-600 rounded-lg dark:text-black' onChange={handlechange} value={formdata.discountPrice}  required/>
+             <input type='number' id='discountPrice' min='50' max='100000000' className='p-3 border border-gray-600 rounded-lg dark:text-black' onChange={handlechange} value={formdata.discountPrice}  required/>
              <span>Dicount Price</span>
            </div>
           )}
