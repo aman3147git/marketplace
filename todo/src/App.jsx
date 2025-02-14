@@ -10,6 +10,7 @@ import Listing from "./components/Listing";
 import UpdateListing from "./components/Updatelisting";
 import OurListing from "./components/OurListing";
 import Search from "./components/Search";
+import Footer from "./components/Footer";
 
 
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/search/:query" element={<Search/>} />
         </Route>
       </Routes>
+      <Footer/>
     </BrowserRouter>
     <Toaster/>
     </>
