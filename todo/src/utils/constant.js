@@ -1,2 +1,2 @@
-export const END_POINT="http://localhost:8080/s1/user"
-export const END_POINT2="http://localhost:8080/s1/listing"
+export const END_POINT="https://marketplace-48gl.onrender.com/s1/user"
+export const END_POINT2="https://marketplace-48gl.onrender.com/s1/listing"
