@@ -8,7 +8,7 @@
     
     "dev": "nodemon backend/index.js",
     "build": "npm install && npm install --prefix todo && npm run build --prefix todo",
-    "start": "nodemon backend/index.js",
+    "start": "nodemon backend/index.js"
   },
   "author": "",
   "license": "ISC",
