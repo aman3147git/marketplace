@@ -3,7 +3,8 @@ import { FaInstagram, FaXTwitter, FaFacebookF } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-500 text-white py-8">
+    
+    <footer className="bg-[#111111] text-white py-8">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-12">
         
         
@@ -47,6 +48,7 @@ const Footer = () => {
         © {new Date().getFullYear()} MarketPlace. All rights reserved.
       </div>
     </footer>
+    
   );
 }
 
